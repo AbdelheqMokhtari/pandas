@@ -2,9 +2,8 @@ import pandas as pd
 
 
 def find_customers(customers: pd.DataFrame, orders: pd.DataFrame) -> pd.DataFrame:
-    result = pd.DataFrame()
-    result['Customers'] = customers.loc[~customers['id'].isin(orders["customerId"].values),['name']]
-    return result
+    result = customers.loc[~customers['id'].isin(orders["customerId"].values), ['name']]
+    return result[['name']].rename(columns={'name': 'Customers'})
 
 
 customers_list = {'id': [1, 2, 3, 4], 'name': ['Joe', 'Henry', 'Sam', 'Max']}
